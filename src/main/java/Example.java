@@ -1,5 +1,4 @@
-import java.lang.management.ManagementFactory;
-import java.lang.management.RuntimeMXBean;
+import java.util.Date;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -9,15 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @EnableAutoConfiguration
 public class Example {
+	
+	static Long date = new Date().getTime() ;
 
     @RequestMapping("/")
     String home() {		
-    	RuntimeMXBean runtimeBean = ManagementFactory.getRuntimeMXBean();
-
-    	String jvmName = runtimeBean.getName();
-		System.out.println("JVM Name = " + jvmName);
-		long pid = Long.valueOf(jvmName.split("@")[0]);
-        return "JVM PID  = " + pid;
+    	
+        return "POD inicio en milisegundos  = " + date;
     }
 
     public static void main(String[] args) throws Exception {
